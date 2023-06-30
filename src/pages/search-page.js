@@ -1,11 +1,19 @@
 import Input from "../components/input";
 import { useState } from "react";
+import octokit from "../services/github-service";
 function SearchPage() {
   const [query, setQuery] = useState("");
 
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault();
     console.log(query);
+    await octokit
+      .request(`GET /${query}`, {
+        headers: {
+          "X-GitHub-Api-Version": "2022-11-28",
+        },
+      })
+      .then(console.log);
   }
   return (
     <form onSubmit={handleSubmit}>
