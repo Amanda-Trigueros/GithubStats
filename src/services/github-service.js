@@ -1,6 +1,9 @@
 import { Octokit, App } from "octokit";
+// import { configDotenv } from "dotenv";
+// require("dotenv").config();
+// const apiKey = process.env.GITHUT_KEY;
 const octokit = new Octokit({
-  auth: `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`,
+  auth: ``,
 });
 
 export default octokit;
