@@ -23,11 +23,21 @@ const UserButtons = styled.button`
   box-shadow: 2px 2px 0px 0px rgba(0, 0, 0, 0.25);
   background-color: white;
   font-size: 28px;
+
 `;
 const ButtonName = styled.p`
   font-weight: 400;
   font-size: 16px;
 `;
+
+const ButtonIcon = styled.img`
+  margin: auto;   
+
+`
+
+function handleClick(event) {
+
+}
 
 function ShowUser({ user, onAddFavorite, isFavorite }) {
   const notFavoriteUser = (
@@ -54,15 +64,19 @@ function ShowUser({ user, onAddFavorite, isFavorite }) {
           </UserName>
           <UserBio>{user.bio}</UserBio>
           <UserButtons>
+            <ButtonIcon src={require("../assets/icons/followers.png")} alt="icon"/>
             {user.followers} <ButtonName>followers</ButtonName>{" "}
           </UserButtons>
           <UserButtons>
+            <ButtonIcon src={require("../assets/icons/followings.png")} alt="icon"/>
             {user.following} <ButtonName>followings</ButtonName>{" "}
           </UserButtons>
           <UserButtons>
+            <ButtonIcon src={require("../assets/icons/repos.png")} alt="icon"/>
             {user.public_repos} <ButtonName>public repos</ButtonName>{" "}
           </UserButtons>
           <UserButtons>
+            <ButtonIcon src={require("../assets/icons/gist.png")} alt="icon"/>
             {user.public_gists} <ButtonName>public gists</ButtonName>{" "}
           </UserButtons>
         </div>
