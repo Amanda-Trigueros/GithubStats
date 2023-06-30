@@ -1,6 +1,7 @@
 import Input from "../components/input";
 import { useState } from "react";
 import octokit from "../services/github-service";
+import ShowUser from "../components/show-user";
 
 function SearchPage() {
   const [query, setQuery] = useState("");
@@ -34,17 +35,7 @@ function SearchPage() {
       />
       <button>Search</button>
   
-      { user ? (
-      <div>
-        <img src= {user.avatar_url} alt="avatar"/>
-        <h1>{user.name}</h1>
-        <p>{user.bio}</p> 
-        <button>{user.followers}</button>
-        <button>{user.following}</button>
-        <button>{user.public_repos}</button>
-        <button>{user.public_gists}</button>
-        
-      </div>) : "" }
+      { user ? <ShowUser user={user} /> : "" }
 
     </form>
   );
