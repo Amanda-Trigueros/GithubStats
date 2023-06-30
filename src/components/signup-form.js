@@ -1,17 +1,19 @@
 import { useState } from "react";
+import { createUser } from "../services/user-service";
 
 import Input from "./input";
-import { login } from "../services/auth-service";
 // import { useAuth } from "../context/auth-context";
 
-function LoginForm() {
-  // const { login } = useAuth();
+function SignupForm() {
+  // const { signup } = useAuth();
   const [formData, setFormData] = useState({
     email: "",
     password: "",
+    first_name: "",
+    last_name: "",
   });
 
-  const { email, password } = formData;
+  const { email, password, first_name, last_name } = formData;
 
   function handleChange(event) {
     const { name, value } = event.target;
@@ -20,8 +22,10 @@ function LoginForm() {
 
   function handleSubmit(event) {
     event.preventDefault();
-    console.log(formData);
-    login(formData).then((user) => console.log(user));
+
+    console.log({ email, password, first_name, last_name });
+
+    // signup(formData);
   }
 
   return (
@@ -45,10 +49,22 @@ function LoginForm() {
           placeholder="********"
           label="Password"
         />
-        <button type="submit">Login</button>
+        <Input
+          name="first_name"
+          value={first_name}
+          onChange={handleChange}
+          label="First Name"
+        />
+        <Input
+          name="last_name"
+          value={last_name}
+          onChange={handleChange}
+          label="Last Name"
+        />
+        <button type="submit">Create Account</button>
       </form>
     </div>
   );
 }
 
-export default LoginForm;
+export default SignupForm;
