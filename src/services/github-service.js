@@ -3,7 +3,7 @@ import { Octokit, App } from "octokit";
 // require("dotenv").config();
 // const apiKey = process.env.GITHUT_KEY;
 const octokit = new Octokit({
-  auth: ``,
+  auth: `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`,
 });
 
 export default octokit;
