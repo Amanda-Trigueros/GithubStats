@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import { RiStarFill } from "react-icons/ri";
+import { useNavigate } from "react-router";
 import { colors } from "../styles";
 
 const UserImg = styled.img`
@@ -23,7 +24,7 @@ const UserButtons = styled.button`
   box-shadow: 2px 2px 0px 0px rgba(0, 0, 0, 0.25);
   background-color: white;
   font-size: 28px;
-
+  cursor: pointer;
 `;
 const ButtonName = styled.p`
   font-weight: 400;
@@ -31,13 +32,8 @@ const ButtonName = styled.p`
 `;
 
 const ButtonIcon = styled.img`
-  margin: auto;   
-
-`
-
-function handleClick(event) {
-
-}
+  margin: auto;
+`;
 
 function ShowUser({ user, onAddFavorite, isFavorite }) {
   const notFavoriteUser = (
@@ -51,6 +47,10 @@ function ShowUser({ user, onAddFavorite, isFavorite }) {
       <RiStarFill color={colors.yellow[500]} />
     </>
   );
+  const navigate = useNavigate();
+  function handleClick(path) {
+    navigate(`/${path}`);
+  }
   return (
     <>
       {user ? (
@@ -64,19 +64,35 @@ function ShowUser({ user, onAddFavorite, isFavorite }) {
           </UserName>
           <UserBio>{user.bio}</UserBio>
           <UserButtons>
-            <ButtonIcon src={require("../assets/icons/followers.png")} alt="icon"/>
+            <ButtonIcon
+              onClick={() => handleClick("followers")}
+              src={require("../assets/icons/followers.png")}
+              alt="icon"
+            />
             {user.followers} <ButtonName>followers</ButtonName>{" "}
           </UserButtons>
           <UserButtons>
-            <ButtonIcon src={require("../assets/icons/followings.png")} alt="icon"/>
+            <ButtonIcon
+              onClick={() => handleClick("followings")}
+              src={require("../assets/icons/followings.png")}
+              alt="icon"
+            />
             {user.following} <ButtonName>followings</ButtonName>{" "}
           </UserButtons>
           <UserButtons>
-            <ButtonIcon src={require("../assets/icons/repos.png")} alt="icon"/>
+            <ButtonIcon
+              onClick={() => handleClick("public_repos")}
+              src={require("../assets/icons/repos.png")}
+              alt="icon"
+            />
             {user.public_repos} <ButtonName>public repos</ButtonName>{" "}
           </UserButtons>
           <UserButtons>
-            <ButtonIcon src={require("../assets/icons/gist.png")} alt="icon"/>
+            <ButtonIcon
+              onClick={() => handleClick("public_gists")}
+              src={require("../assets/icons/gist.png")}
+              alt="icon"
+            />
             {user.public_gists} <ButtonName>public gists</ButtonName>{" "}
           </UserButtons>
         </div>
