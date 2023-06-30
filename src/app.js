@@ -1,7 +1,10 @@
+import LoginForm from "./components/login-form";
+
 function App() {
   return (
     <div className="App">
-      <h1>Hi</h1>
+      <h1>Welcome to Github Stats</h1>
+      <LoginForm />
     </div>
   );
 }
