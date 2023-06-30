@@ -1,10 +1,9 @@
 import { useState } from "react";
 
 import Input from "./input";
-import { login } from "../services/auth-service";
 // import { useAuth } from "../context/auth-context";
 
-function LoginForm() {
+function LoginForm({ onLogin }) {
   // const { login } = useAuth();
   const [formData, setFormData] = useState({
     email: "",
@@ -20,8 +19,7 @@ function LoginForm() {
 
   function handleSubmit(event) {
     event.preventDefault();
-    console.log(formData);
-    login(formData).then((user) => console.log(user));
+    onLogin(formData);
   }
 
   return (
@@ -52,3 +50,11 @@ function LoginForm() {
 }
 
 export default LoginForm;
+/**
+ * Favorites
+ */
+// {
+// 	"name": "Diego Torres",
+// 	"username": "diegotc86",
+// 	"avatar_url": "some_avatar.jpg"
+// }

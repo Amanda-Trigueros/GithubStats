@@ -1,10 +1,9 @@
 import { useState } from "react";
-import { createUser } from "../services/user-service";
 
 import Input from "./input";
 // import { useAuth } from "../context/auth-context";
 
-function SignupForm() {
+function SignupForm({ onSignup }) {
   // const { signup } = useAuth();
   const [formData, setFormData] = useState({
     email: "",
@@ -22,10 +21,7 @@ function SignupForm() {
 
   function handleSubmit(event) {
     event.preventDefault();
-
-    console.log({ email, password, first_name, last_name });
-
-    // signup(formData);
+    onSignup(formData);
   }
 
   return (

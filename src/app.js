@@ -1,35 +1,32 @@
-import styled from "@emotion/styled";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-import LoginForm from "./components/login-form";
-import SignupForm from "./components/signup-form";
-
-const CustomLink = styled.button`
-  background: none;
-  border: none;
-  cursor: pointer;
-  color: #2d9cdb;
-  font-size: 16px;
-  font-weight: 700;
-  &:hover {
-    color: #2db2db;
-  }
-`;
+import { createUser, getUser } from "./services/user-service";
+import { login } from "./services/auth-service";
+import AuthenticatedApp from "./AuthenticatedApp";
+import UnauthenticatedApp from "./UnauthenticatedApp";
 
 function App() {
-  const [showLogin, setShowLogin] = useState(true);
+  const [user, setUser] = useState(null);
 
-  function handleLinkClick(event) {
-    setShowLogin(!showLogin);
+  useEffect(() => {
+    getUser().then(setUser).catch(console.log);
+  }, []);
+
+  function handleLogin(credentials) {
+    login(credentials).then(setUser).catch(console.log);
   }
-  return (
-    <div className="App">
-      <h1>Welcome to Github Stats</h1>
-      {showLogin ? <LoginForm /> : <SignupForm />}
-      <CustomLink onClick={handleLinkClick}>
-        {showLogin ? "Create Account" : "Login"}
-      </CustomLink>
-    </div>
+
+  function handleSignup(userData) {
+    createUser(userData).then(setUser).catch(console.log);
+
+    console.log(userData);
+
+    // signup(formData);
+  }
+  return user ? (
+    <AuthenticatedApp />
+  ) : (
+    <UnauthenticatedApp onLogin={handleLogin} onSignup={handleSignup} />
   );
 }
 
