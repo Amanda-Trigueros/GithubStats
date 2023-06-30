@@ -8,10 +8,8 @@ function SearchPage() {
     event.preventDefault();
     console.log(query);
     await octokit
-      .request(`GET /${query}`, {
-        headers: {
-          "X-GitHub-Api-Version": "2022-11-28",
-        },
+      .request("GET /users/{username}/repos", {
+        username: `${query}`,
       })
       .then(console.log);
   }
