@@ -9,7 +9,7 @@ function AuthenticatedApp() {
   return (
     <Routes>
       <Route path="/" element={<SearchPage />} />
-      <Route path="followers" element={<FollowersPage />} />
+      <Route path="followers" element={<FollowersPage replace />} />
       <Route path="followings" element={<FollowingPage />} />
       <Route path="public_repos" element={<PublicReposPage />} />
       <Route path="*" element={<SearchPage />} />
