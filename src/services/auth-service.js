@@ -13,3 +13,4 @@ export async function login(credentials) {
 export async function logout() {
   await githubClient("/logout", { method: "DELETE" });
 }
+
