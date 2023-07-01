@@ -60,7 +60,11 @@ function ShowUser({ user, onAddFavorite, isFavorite, onRemoveFavorite }) {
           <UserImg src={user.avatar_url} />
           <UserName>
             {user.name}
-            <button onClick={isFavorite ? onRemoveFavorite : onAddFavorite}>
+            <button
+              onClick={() =>
+                isFavorite ? onRemoveFavorite(user) : onAddFavorite(user)
+              }
+            >
               {isFavorite ? favoriteUser : notFavoriteUser}
             </button>
           </UserName>

@@ -5,9 +5,9 @@ import ShowUser from "../components/show-user";
 import { createFavorite, removeFavorite } from "../services/favorites-service";
 import { SiGithub } from "react-icons/si";
 
-function SearchPage() {
+function SearchPage({ favorites, onAddFavorite, onRemoveFavorite }) {
   const [query, setQuery] = useState("");
-  const [favorites, setFavorites] = useState([]);
+
   const [state, setState] = useState({
     status: "inactive",
     data: null,
@@ -53,33 +53,6 @@ function SearchPage() {
   // 	"username": "diegotc86",
   // 	"avatar_url": "some_avatar.jpg"
   // }
-  function handleAddFavorite() {
-    const data = {
-      name: user?.name,
-      username: user?.login,
-      avatar_url: user?.avatar_url,
-    };
-    // console.log(user);
-    createFavorite(data)
-      .then((newFavorite) => setFavorites([...favorites, newFavorite]))
-      .catch(console.log);
-    // console.log(data);
-  }
-
-  function handleRemoveFavorite() {
-    const favorite = favorites.find(
-      (fav) => fav.avatar_url === user?.avatar_url
-    );
-    console.log(favorite);
-    console.log(user);
-    removeFavorite(favorite.id).then(() => {
-      const newFavorites = favorites.filter(
-        (fav) => fav.username !== user?.login
-      );
-      setFavorites(newFavorites);
-      console.log(newFavorites);
-    });
-  }
 
   useEffect(() => console.log({ favorites }), [favorites]);
   return (
@@ -103,8 +76,8 @@ function SearchPage() {
       {status === "success" && (
         <ShowUser
           user={user}
-          onAddFavorite={handleAddFavorite}
-          onRemoveFavorite={handleRemoveFavorite}
+          onAddFavorite={onAddFavorite}
+          onRemoveFavorite={onRemoveFavorite}
           isFavorite={isFavorite}
         />
       )}
