@@ -30,7 +30,7 @@ function SearchPage() {
       })
       .catch((error) => {
         setState({
-          status: "error",
+          status: "error", // inactive | success | error | pending
           data: null,
           error: "El usuario no existe!",
         });
@@ -42,6 +42,7 @@ function SearchPage() {
 
   function handleSubmit(event) {
     event.preventDefault();
+    setState({ status: "pending", data: null, error: null });
     octokitRequest();
   }
   /**
@@ -92,6 +93,7 @@ function SearchPage() {
         />
         {/* <button type="submit">Search</button> */}
       </div>
+      {status === "pending" && "Loading..."}
       {status === "inactive" && (
         <>
           <SiGithub size={120} color={"#171516"} />
