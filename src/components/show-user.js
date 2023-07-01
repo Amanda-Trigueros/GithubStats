@@ -36,7 +36,7 @@ const ButtonIcon = styled.img`
   margin: auto;
 `;
 
-function ShowUser({ user, onAddFavorite, isFavorite }) {
+function ShowUser({ user, onAddFavorite, isFavorite, onRemoveFavorite }) {
   const notFavoriteUser = (
     <>
       <RiStarFill color={colors.gray.light} />
@@ -60,7 +60,7 @@ function ShowUser({ user, onAddFavorite, isFavorite }) {
           <UserImg src={user.avatar_url} />
           <UserName>
             {user.name}
-            <button onClick={onAddFavorite}>
+            <button onClick={isFavorite ? onRemoveFavorite : onAddFavorite}>
               {isFavorite ? favoriteUser : notFavoriteUser}
             </button>
           </UserName>
