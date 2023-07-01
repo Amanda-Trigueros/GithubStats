@@ -25,6 +25,7 @@ function SearchPage() {
       })
       .then((response) => {
         setState({ status: "success", data: response.data, error: null });
+        localStorage.setItem("Profile", JSON.stringify(response.data));
       })
       .catch((error) => {
         setState({

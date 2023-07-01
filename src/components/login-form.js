@@ -50,11 +50,3 @@ function LoginForm({ onLogin }) {
 }
 
 export default LoginForm;
-/**
- * Favorites
- */
-// {
-// 	"name": "Diego Torres",
-// 	"username": "diegotc86",
-// 	"avatar_url": "some_avatar.jpg"
-// }
