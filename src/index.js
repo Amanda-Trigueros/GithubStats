@@ -5,12 +5,15 @@ import { BrowserRouter } from "react-router-dom";
 
 import App from "./app";
 import { global, reset } from "./styles";
+import { UserProvider } from "./context/user-context";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <BrowserRouter>
     <Global styles={reset} />
     <Global styles={global} />
-    <App />
+    <UserProvider>
+      <App />
+    </UserProvider>
   </BrowserRouter>
 );

@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { useEffect } from "react";
 import { RiStarFill } from "react-icons/ri";
 import { useNavigate } from "react-router";
 import { colors } from "../styles";
@@ -51,10 +52,11 @@ function ShowUser({ user, onAddFavorite, isFavorite }) {
   function handleClick(path) {
     navigate(`/${path}`);
   }
+  // useEffect(() => navigate());
   return (
     <>
       {user ? (
-        <div>
+        <>
           <UserImg src={user.avatar_url} />
           <UserName>
             {user.name}
@@ -65,37 +67,37 @@ function ShowUser({ user, onAddFavorite, isFavorite }) {
           <UserBio>{user.bio}</UserBio>
           <UserButtons>
             <ButtonIcon
-              onClick={() => handleClick("followers")}
+              onClick={() => navigate("/followers")}
               src={require("../assets/icons/followers.png")}
-              alt="icon"
+              type="submit"
             />
-            {user.followers} <ButtonName>followers</ButtonName>{" "}
+            {user.followers} <ButtonName>followers</ButtonName>
           </UserButtons>
           <UserButtons>
             <ButtonIcon
-              onClick={() => handleClick("followings")}
+              onClick={() => navigate("/followings")}
               src={require("../assets/icons/followings.png")}
               alt="icon"
             />
-            {user.following} <ButtonName>followings</ButtonName>{" "}
+            {user.following} <ButtonName>followings</ButtonName>
           </UserButtons>
           <UserButtons>
             <ButtonIcon
-              onClick={() => handleClick("public_repos")}
+              onClick={() => navigate("/public_repos")}
               src={require("../assets/icons/repos.png")}
               alt="icon"
             />
-            {user.public_repos} <ButtonName>public repos</ButtonName>{" "}
+            {user.public_repos} <ButtonName>public repos</ButtonName>
           </UserButtons>
           <UserButtons>
             <ButtonIcon
-              onClick={() => handleClick("public_gists")}
+              onClick={() => navigate("/public_gists")}
               src={require("../assets/icons/gist.png")}
               alt="icon"
             />
-            {user.public_gists} <ButtonName>public gists</ButtonName>{" "}
+            {user.public_gists} <ButtonName>public gists</ButtonName>
           </UserButtons>
-        </div>
+        </>
       ) : (
         ""
       )}

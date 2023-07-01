@@ -15,3 +15,12 @@ export async function getUser() {
 
   return user;
 }
+
+export async function updateUser(userData) {
+  const { token, ...user } = await githubClient("/profile", {
+    method: "PATCH",
+    body: userData,
+  });
+
+  return user;
+}

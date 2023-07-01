@@ -6,7 +6,6 @@ const FollowersTitle = styled.h2`
   font-weight: 400;
   font-size: 28px;
   line-height: 35.2px;
-
 `;
 
 const FollowersAvatar = styled.img`
@@ -25,7 +24,6 @@ const FollowersCard = styled.div`
   box-shadow: 2px 2px 0px 0px rgba(0, 0, 0, 0.25);
   background-color: white;
   align-items: center;
-
 `;
 
 const FollowersWrapper = styled.div`
@@ -34,8 +32,6 @@ const FollowersWrapper = styled.div`
   flex-direction: column;
   gap: 16px;
 `;
-
-
 
 function FollowingsPage() {
   const user = JSON.parse(localStorage.getItem("Profile"));
@@ -48,22 +44,26 @@ function FollowingsPage() {
     .then((response) => {
       setFollowings(response.data);
       // console.log(followers);
-    });
+    })
+    .catch(console.log);
   return (
     <>
-    { followings ? 
-    <FollowersTitle>Followings ( {followings.length} ) </FollowersTitle> : ""}
-    <FollowersWrapper>
-      {followings
-        ? followings.map((following) => {
-            return (
-              <FollowersCard>
-                <FollowersAvatar src={following.avatar_url} alt="dn" />
-                <p>{following.login}</p>
-              </FollowersCard>
-            );
-          })
-        : ""}
+      {followings ? (
+        <FollowersTitle>Followings ( {followings.length} ) </FollowersTitle>
+      ) : (
+        ""
+      )}
+      <FollowersWrapper>
+        {followings
+          ? followings.map((following) => {
+              return (
+                <FollowersCard>
+                  <FollowersAvatar src={following.avatar_url} alt="dn" />
+                  <p>{following.login}</p>
+                </FollowersCard>
+              );
+            })
+          : ""}
       </FollowersWrapper>
     </>
   );

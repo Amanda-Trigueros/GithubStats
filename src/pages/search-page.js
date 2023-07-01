@@ -19,7 +19,7 @@ function SearchPage() {
     favorites.find((fav) => fav.avatar_url === user?.avatar_url)
   );
   function octokitRequest() {
-    return octokit
+    octokit
       .request("GET /users/{username}", {
         username: `${query}`,
       })
@@ -74,7 +74,7 @@ function SearchPage() {
         value={query}
         onChange={(event) => setQuery(event.target.value)}
       />
-      <button>Search</button>
+      <button type="submit">Search</button>
       {status === "inactive" && <p>Icon No users...</p>}
       {status === "success" && (
         <ShowUser

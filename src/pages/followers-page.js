@@ -1,12 +1,12 @@
 import { useState } from "react";
 import octokit from "../services/github-service";
 import styled from "@emotion/styled";
+import { useAuth } from "../context/user-context";
 
 const FollowersTitle = styled.h2`
   font-weight: 400;
   font-size: 28px;
   line-height: 35.2px;
-
 `;
 
 const FollowersAvatar = styled.img`
@@ -25,7 +25,6 @@ const FollowersCard = styled.div`
   box-shadow: 2px 2px 0px 0px rgba(0, 0, 0, 0.25);
   background-color: white;
   align-items: center;
-
 `;
 
 const FollowersWrapper = styled.div`
@@ -35,10 +34,10 @@ const FollowersWrapper = styled.div`
   gap: 16px;
 `;
 
-
-
 function FollowersPage() {
   const user = JSON.parse(localStorage.getItem("Profile"));
+  // const { user } = useAuth();
+  // console.log(user);
   const [followers, setFollowers] = useState(null);
 
   octokit
@@ -48,22 +47,26 @@ function FollowersPage() {
     .then((response) => {
       setFollowers(response.data);
       // console.log(followers);
-    });
+    })
+    .catch(console.log);
   return (
     <>
-    { followers ? 
-    <FollowersTitle>Followers ( {followers.length} ) </FollowersTitle> : ""}
-    <FollowersWrapper>
-      {followers
-        ? followers.map((follower) => {
-            return (
-              <FollowersCard>
-                <FollowersAvatar src={follower.avatar_url} alt="dn" />
-                <p>{follower.login}</p>
-              </FollowersCard>
-            );
-          })
-        : ""}
+      {followers ? (
+        <FollowersTitle>Followers ( {followers.length} ) </FollowersTitle>
+      ) : (
+        ""
+      )}
+      <FollowersWrapper>
+        {followers
+          ? followers.map((follower, index) => {
+              return (
+                <FollowersCard key={`follow${index}`}>
+                  <FollowersAvatar src={follower.avatar_url} alt="dn" />
+                  <p>{follower.login}</p>
+                </FollowersCard>
+              );
+            })
+          : ""}
       </FollowersWrapper>
     </>
   );

@@ -1,48 +1,37 @@
 import styled from "@emotion/styled";
-
+import { SiGithub, SiGithuh } from "react-icons/si";
+import { RiUser3Fill, RiSearchFill, RiStarFill } from "react-icons/ri";
+import { Link } from "react-router-dom";
 
 const Wrapper = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   gap: 0.5rem;
-`;
-const ProfileIcon = styled.img`
-
-`;
-
-const SearchIcon = styled.img`
-
-`;
-
-const FavIcon = styled.img`
-
 `;
 
 function Navbar() {
   const navigation = [
     {
       to: "/profile",
-      icon: <ProfileIcon src="./assets/icons/user-3-fill.png"/>,
+      icon: <RiUser3Fill size={50} color={"#BDBDBD"} />,
     },
     {
       to: "/search-page",
-      icon: <SearchIcon src="./assets/icons/search-fill.png"/>,
-      
+      icon: <RiSearchFill size={50} color={"#BDBDBD"} />,
     },
     {
       to: "/favorites",
-      icon: <FavIcon src="./star-line.png"/>,
-      
+      icon: <RiStarFill size={50} color={"#BDBDBD"} />,
     },
-    
   ];
 
   return (
     <Wrapper>
-      {navigation.map((nav) => (
+      {navigation.map((nav, index) => (
         <>
-        {nav.icon}
-        <ProfileIcon src="./star-line.png"/>
+          <Link to={nav.to} key={`eq${index}`}>
+            {nav.icon}
+          </Link>
         </>
       ))}
     </Wrapper>
