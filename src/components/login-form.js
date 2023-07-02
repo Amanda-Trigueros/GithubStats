@@ -1,8 +1,27 @@
 import { useState } from "react";
+import styled from "@emotion/styled";
 
 import Input from "./input";
 // import { useAuth } from "../context/auth-context";
 
+const SubmitButton = styled.button`
+  border-radius: 4px;
+  border: none;
+  background: #2d9cdb;
+  padding: 8px 16px;
+  box-shadow: 2px 2px 0px 0px rgba(0, 0, 0, 0.25);
+  color: #fff;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+`;
+
+const Wrapper = styled.div`
+  margin: auto;
+  display: flex;
+  justify-content: center;
+`;
 function LoginForm({ onLogin }) {
   // const { login } = useAuth();
   const [formData, setFormData] = useState({
@@ -43,7 +62,9 @@ function LoginForm({ onLogin }) {
           placeholder="********"
           label="Password"
         />
-        <button type="submit">Login</button>
+        <Wrapper>
+          <SubmitButton type="submit">Login</SubmitButton>
+        </Wrapper>
       </form>
     </div>
   );

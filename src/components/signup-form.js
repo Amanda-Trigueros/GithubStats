@@ -1,7 +1,26 @@
 import { useState } from "react";
-
+import styled from "@emotion/styled";
 import Input from "./input";
 // import { useAuth } from "../context/auth-context";
+
+const Wrapper = styled.div`
+  margin: auto;
+  display: flex;
+  justify-content: center;
+`;
+
+const SubmitButton = styled.button`
+  border-radius: 4px;
+  border: none;
+  background: #2d9cdb;
+  padding: 8px 16px;
+  box-shadow: 2px 2px 0px 0px rgba(0, 0, 0, 0.25);
+  color: #fff;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+`;
 
 function SignupForm({ onSignup }) {
   // const { signup } = useAuth();
@@ -57,7 +76,9 @@ function SignupForm({ onSignup }) {
           onChange={handleChange}
           label="Last Name"
         />
-        <button type="submit">Create Account</button>
+        <Wrapper>
+          <SubmitButton type="submit">Create Account</SubmitButton>
+        </Wrapper>
       </form>
     </div>
   );

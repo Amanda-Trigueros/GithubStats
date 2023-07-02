@@ -17,7 +17,10 @@ const UserBio = styled.p`
   font-weight: 400;
   font-size: 16px;
 `;
-const UserButtons = styled.button`
+const UserButtons = styled.a`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   width: 140px;
   height: 140px;
   border: none;
@@ -34,6 +37,13 @@ const ButtonName = styled.p`
 
 const ButtonIcon = styled.img`
   margin: auto;
+`;
+const Wrapper = styled.div`
+  display: grid;
+  grid-template-columns: auto auto;
+  justify-items: center;
+  justify-content: center;
+  gap: 17px;
 `;
 
 function ShowUser({ user, onAddFavorite, isFavorite, onRemoveFavorite }) {
@@ -69,38 +79,40 @@ function ShowUser({ user, onAddFavorite, isFavorite, onRemoveFavorite }) {
             </button>
           </UserName>
           <UserBio>{user.bio}</UserBio>
-          <UserButtons>
-            <ButtonIcon
-              onClick={() => navigate("/followers")}
-              src={require("../assets/icons/followers.png")}
-              type="submit"
-            />
-            {user.followers} <ButtonName>followers</ButtonName>
-          </UserButtons>
-          <UserButtons>
-            <ButtonIcon
-              onClick={() => navigate("/followings")}
-              src={require("../assets/icons/followings.png")}
-              alt="icon"
-            />
-            {user.following} <ButtonName>followings</ButtonName>
-          </UserButtons>
-          <UserButtons>
-            <ButtonIcon
-              onClick={() => navigate("/public_repos")}
-              src={require("../assets/icons/repos.png")}
-              alt="icon"
-            />
-            {user.public_repos} <ButtonName>public repos</ButtonName>
-          </UserButtons>
-          <UserButtons>
-            <ButtonIcon
-              onClick={() => navigate("/public_gists")}
-              src={require("../assets/icons/gist.png")}
-              alt="icon"
-            />
-            {user.public_gists} <ButtonName>public gists</ButtonName>
-          </UserButtons>
+          <Wrapper>
+            <UserButtons>
+              <ButtonIcon
+                onClick={() => navigate("/followers")}
+                src={require("../assets/icons/followers.png")}
+                type="submit"
+              />
+              {user.followers} <ButtonName>followers</ButtonName>
+            </UserButtons>
+            <UserButtons>
+              <ButtonIcon
+                onClick={() => navigate("/followings")}
+                src={require("../assets/icons/followings.png")}
+                alt="icon"
+              />
+              {user.following} <ButtonName>followings</ButtonName>
+            </UserButtons>
+            <UserButtons>
+              <ButtonIcon
+                onClick={() => navigate("/public_repos")}
+                src={require("../assets/icons/repos.png")}
+                alt="icon"
+              />
+              {user.public_repos} <ButtonName>public repos</ButtonName>
+            </UserButtons>
+            <UserButtons>
+              <ButtonIcon
+                onClick={() => navigate("/public_gists")}
+                src={require("../assets/icons/gist.png")}
+                alt="icon"
+              />
+              {user.public_gists} <ButtonName>public gists</ButtonName>
+            </UserButtons>
+          </Wrapper>
         </>
       ) : (
         ""
