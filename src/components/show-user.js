@@ -17,7 +17,7 @@ const UserBio = styled.p`
   font-weight: 400;
   font-size: 16px;
 `;
-const UserButtons = styled.a`
+const UserButtons = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -80,33 +80,26 @@ function ShowUser({ user, onAddFavorite, isFavorite, onRemoveFavorite }) {
           </UserName>
           <UserBio>{user.bio}</UserBio>
           <Wrapper>
-            <UserButtons>
-              <ButtonIcon
-                onClick={() => navigate("/followers")}
-                src={require("../assets/icons/followers.png")}
-                type="submit"
-              />
+            <UserButtons onClick={() => navigate("/followers")}>
+              <ButtonIcon src={require("../assets/icons/followers.png")} />
               {user.followers} <ButtonName>followers</ButtonName>
             </UserButtons>
-            <UserButtons>
+            <UserButtons onClick={() => navigate("/followings")}>
               <ButtonIcon
-                onClick={() => navigate("/followings")}
                 src={require("../assets/icons/followings.png")}
                 alt="icon"
               />
               {user.following} <ButtonName>followings</ButtonName>
             </UserButtons>
-            <UserButtons>
+            <UserButtons onClick={() => navigate("/public_repos")}>
               <ButtonIcon
-                onClick={() => navigate("/public_repos")}
                 src={require("../assets/icons/repos.png")}
                 alt="icon"
               />
               {user.public_repos} <ButtonName>public repos</ButtonName>
             </UserButtons>
-            <UserButtons>
+            <UserButtons onClick={() => navigate("/public_gists")}>
               <ButtonIcon
-                onClick={() => navigate("/public_gists")}
                 src={require("../assets/icons/gist.png")}
                 alt="icon"
               />
