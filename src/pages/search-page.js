@@ -15,9 +15,9 @@ function SearchPage({ favorites, onAddFavorite, onRemoveFavorite }) {
   });
 
   const { status, data: user, error } = state;
-
+  console.log(favorites);
   const isFavorite = Boolean(
-    favorites.find((fav) => fav.avatar_url === user?.avatar_url)
+    favorites?.find((fav) => fav.avatar_url === user?.avatar_url)
   );
   function octokitRequest() {
     octokit
@@ -54,7 +54,7 @@ function SearchPage({ favorites, onAddFavorite, onRemoveFavorite }) {
   // 	"avatar_url": "some_avatar.jpg"
   // }
 
-  useEffect(() => console.log({ favorites }), [favorites]);
+  // useEffect(() => console.log({ favorites }), [favorites]);
   return (
     <form onSubmit={handleSubmit}>
       <div>

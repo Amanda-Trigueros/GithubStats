@@ -7,3 +7,7 @@ export async function createFavorite(data) {
 export async function removeFavorite(id) {
   return await githubClient("/favorites/" + id, { method: "DELETE" });
 }
+
+export async function getFavorites() {
+  return await githubClient("/favorites");
+}

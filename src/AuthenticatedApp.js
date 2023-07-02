@@ -6,8 +6,12 @@ import PublicReposPage from "./pages/public_repos-page";
 import ProfilePage from "./pages/profile-page";
 import FavoritesPage from "./pages/favorites-page";
 import Navbar from "./components/navbar";
-import { useState } from "react";
-import { removeFavorite, createFavorite } from "./services/favorites-service";
+import { useState, useEffect } from "react";
+import {
+  removeFavorite,
+  createFavorite,
+  getFavorites,
+} from "./services/favorites-service";
 
 function AuthenticatedApp() {
   const [favorites, setFavorites] = useState([]);
@@ -23,7 +27,9 @@ function AuthenticatedApp() {
       .catch(console.log);
     // console.log(data);
   }
-
+  useEffect(() => {
+    getFavorites().then(setFavorites);
+  }, []);
   function handleRemoveFavorite(user) {
     const favorite = favorites.find(
       (fav) => fav.avatar_url === user?.avatar_url
@@ -54,7 +60,10 @@ function AuthenticatedApp() {
           <Route path="profile" element={<ProfilePage />} />
           <Route path="followers" element={<FollowersPage replace />} />
           <Route path="followings" element={<FollowingPage />} />
-          <Route path="favorites" element={<FavoritesPage />} />
+          <Route
+            path="favorites"
+            element={<FavoritesPage favorites={favorites} />}
+          />
           <Route path="public_repos" element={<PublicReposPage />} />
           <Route
             path="*"
